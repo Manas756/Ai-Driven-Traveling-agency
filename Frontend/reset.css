@@ -1,0 +1,79 @@
+*{
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+html, body{
+    margin: 0;
+    min-height: 100%;
+}
+
+body{
+    background: #000000;
+    color: #ffffff;
+    font-family: "Oswald", sans-serif;
+}
+
+body{
+    position: relative;
+    overflow-x: hidden;
+    background: radial-gradient(circle at 20% 10%, #111827 0%, #05060a 45%, #000000 100%);
+}
+
+body::before,
+body::after{
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before{
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.95), transparent 70%),
+        radial-gradient(1.5px 1.5px at 140px 80px, rgba(255, 255, 255, 0.85), transparent 70%),
+        radial-gradient(1.8px 1.8px at 280px 160px, rgba(255, 255, 255, 0.9), transparent 70%),
+        radial-gradient(1.3px 1.3px at 60px 210px, rgba(255, 255, 255, 0.8), transparent 70%),
+        radial-gradient(2px 2px at 240px 300px, rgba(173, 216, 255, 0.9), transparent 70%),
+        radial-gradient(1.2px 1.2px at 330px 40px, rgba(255, 255, 255, 0.7), transparent 70%);
+    background-size: 360px 360px;
+    animation: starDrift 70s linear infinite;
+    opacity: 0.85;
+}
+
+body::after{
+    background-image:
+        radial-gradient(2.6px 2.6px at 100px 60px, rgba(255, 255, 255, 0.5), transparent 72%),
+        radial-gradient(2.2px 2.2px at 300px 120px, rgba(180, 220, 255, 0.45), transparent 72%),
+        radial-gradient(2.4px 2.4px at 200px 300px, rgba(255, 255, 255, 0.4), transparent 72%);
+    background-size: 420px 420px;
+    filter: blur(0.3px);
+    animation: starTwinkle 5s ease-in-out infinite alternate;
+    opacity: 0.65;
+}
+
+header,
+.login{
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes starDrift{
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(-360px);
+    }
+}
+
+@keyframes starTwinkle{
+    0%{
+        opacity: 0.65;
+    }
+    100%{
+        opacity: 0.35;
+    }
+}
