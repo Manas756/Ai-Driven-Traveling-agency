@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.member {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.member h1 {
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.plans {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.plan {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.plan::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.plan:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.plan:hover::before {
+    opacity: 1;
+}
+
+.plan h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.plan p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.plan p:last-of-type {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.subscribe-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    padding: 12px 35px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.subscribe-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.subscribe-btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .member h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .plans {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .plan {
+        padding: 30px 20px;
+    }
+
+    .plan h2 {
+        font-size: 1.5rem;
+    }
+
+    .plan p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .member h1 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .plan {
+        padding: 20px 15px;
+    }
+
+    .plan h2 {
+        font-size: 1.3rem;
+    }
+
+    .plan p {
+        font-size: 0.9rem;
+    }
+
+    .subscribe-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+.subscribe-btn a {
+    color: white;
+    text-decoration: none;
+}

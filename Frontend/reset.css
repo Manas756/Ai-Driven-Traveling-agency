@@ -6,19 +6,21 @@
 
 html, body{
     margin: 0;
+    height: 100%;
     min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body{
-    background: #000000;
     color: #ffffff;
     font-family: "Oswald", sans-serif;
-}
-
-body{
     position: relative;
+    min-height: 100vh;
     overflow-x: hidden;
-    background: radial-gradient(circle at 20% 10%, #111827 0%, #05060a 45%, #000000 100%);
+    overflow-y: auto;
+    background: black;
+    z-index: 0;
 }
 
 body::before,
@@ -27,31 +29,39 @@ body::after{
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
+    mix-blend-mode: screen;
 }
 
 body::before{
     background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.95), transparent 70%),
-        radial-gradient(1.5px 1.5px at 140px 80px, rgba(255, 255, 255, 0.85), transparent 70%),
-        radial-gradient(1.8px 1.8px at 280px 160px, rgba(255, 255, 255, 0.9), transparent 70%),
-        radial-gradient(1.3px 1.3px at 60px 210px, rgba(255, 255, 255, 0.8), transparent 70%),
-        radial-gradient(2px 2px at 240px 300px, rgba(173, 216, 255, 0.9), transparent 70%),
-        radial-gradient(1.2px 1.2px at 330px 40px, rgba(255, 255, 255, 0.7), transparent 70%);
-    background-size: 360px 360px;
-    animation: starDrift 70s linear infinite;
-    opacity: 0.85;
+        radial-gradient(2.2px 2.2px at 20px 30px, rgba(255, 255, 255, 1), transparent 70%),
+        radial-gradient(1.8px 1.8px at 140px 80px, rgba(255, 255, 255, 0.95), transparent 70%),
+        radial-gradient(2px 2px at 280px 160px, rgba(235, 245, 255, 0.98), transparent 70%),
+        radial-gradient(1.6px 1.6px at 60px 210px, rgba(255, 255, 255, 0.9), transparent 70%),
+        radial-gradient(2.2px 2.2px at 240px 300px, rgba(196, 226, 255, 0.95), transparent 70%),
+        radial-gradient(1.5px 1.5px at 330px 40px, rgba(255, 255, 255, 0.86), transparent 70%),
+        radial-gradient(1.5px 1.5px at 420px 110px, rgba(210, 233, 255, 0.9), transparent 72%),
+        radial-gradient(2px 2px at 520px 260px, rgba(255, 255, 255, 0.94), transparent 72%),
+        radial-gradient(1.7px 1.7px at 160px 420px, rgba(196, 226, 255, 0.86), transparent 70%),
+        radial-gradient(2.1px 2.1px at 470px 430px, rgba(255, 255, 255, 0.92), transparent 72%),
+        radial-gradient(1.6px 1.6px at 600px 160px, rgba(209, 232, 255, 0.82), transparent 72%);
+    background-size: 420px 420px;
+    animation: starDrift 72s linear infinite;
+    opacity: 1;
 }
 
 body::after{
     background-image:
         radial-gradient(2.6px 2.6px at 100px 60px, rgba(255, 255, 255, 0.5), transparent 72%),
         radial-gradient(2.2px 2.2px at 300px 120px, rgba(180, 220, 255, 0.45), transparent 72%),
-        radial-gradient(2.4px 2.4px at 200px 300px, rgba(255, 255, 255, 0.4), transparent 72%);
-    background-size: 420px 420px;
-    filter: blur(0.3px);
-    animation: starTwinkle 5s ease-in-out infinite alternate;
-    opacity: 0.65;
+        radial-gradient(2.4px 2.4px at 200px 300px, rgba(255, 255, 255, 0.4), transparent 72%),
+        radial-gradient(2.8px 2.8px at 460px 220px, rgba(210, 232, 255, 0.56), transparent 72%),
+        radial-gradient(3px 3px at 590px 340px, rgba(255, 255, 255, 0.5), transparent 72%);
+    background-size: 520px 520px;
+    filter: blur(0.2px);
+    animation: starTwinkle 4.8s ease-in-out infinite alternate;
+    opacity: 0.84;
 }
 
 header,
@@ -62,18 +72,221 @@ header,
 
 @keyframes starDrift{
     from{
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
     to{
-        transform: translateY(-360px);
+        transform: translate3d(-110px, -420px, 0);
     }
 }
 
 @keyframes starTwinkle{
     0%{
-        opacity: 0.65;
+        opacity: 0.6;
     }
     100%{
-        opacity: 0.35;
+        opacity: 1;
+    }
+}
+
+/* Travel Animation Container */
+.travel-animation {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: clamp(16px, 8vw, 120px);
+}
+
+.travel-animation::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(120deg, transparent 44%, rgba(255, 255, 255, 0.36) 49%, transparent 54%) 12% 18% / 220px 2px no-repeat,
+        linear-gradient(120deg, transparent 46%, rgba(173, 216, 255, 0.3) 50%, transparent 54%) 66% 26% / 180px 2px no-repeat,
+        linear-gradient(120deg, transparent 45%, rgba(255, 255, 255, 0.28) 50%, transparent 55%) 38% 72% / 200px 2px no-repeat;
+    opacity: 0;
+    animation: shootingStars 11s ease-in-out infinite;
+}
+
+.globe-container {
+    position: relative;
+    width: min(45vw, 340px);
+    aspect-ratio: 1;
+    filter: drop-shadow(0 0 42px rgba(65, 161, 255, 0.28));
+    opacity: 0.92;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+}
+
+.globe {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 22% 20%, rgba(223, 247, 255, 0.48), rgba(223, 247, 255, 0) 32%),
+        radial-gradient(circle at 74% 80%, rgba(2, 17, 40, 0.78), rgba(2, 17, 40, 0) 48%),
+        linear-gradient(150deg, #0f4e96 0%, #0a3568 56%, #071f40 100%);
+    border: 1px solid rgba(174, 224, 255, 0.46);
+    box-shadow:
+        inset -26px -30px 55px rgba(1, 11, 31, 0.5),
+        inset 18px 16px 40px rgba(172, 229, 255, 0.2),
+        0 0 58px rgba(29, 155, 240, 0.24),
+        0 0 16px rgba(149, 219, 255, 0.28);
+    will-change: transform, opacity;
+}
+
+.globe::before {
+    content: "";
+    position: absolute;
+    inset: -3%;
+    border-radius: 50%;
+    background-image: url("https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg");
+    background-size: 200% 100%;
+    background-repeat: repeat-x;
+    background-position: 0 50%;
+    opacity: 0.96;
+    filter: saturate(1.02) contrast(1.12);
+    animation: earthTextureDrift 52s linear infinite;
+}
+
+.globe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(28% 12% at 24% 24%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 100%),
+        radial-gradient(26% 11% at 58% 30%, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 100%),
+        radial-gradient(24% 10% at 70% 64%, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0) 100%),
+        linear-gradient(115deg, rgba(255, 255, 255, 0.25) 15%, rgba(255, 255, 255, 0) 37%);
+    opacity: 0.66;
+    animation: cloudDrift 30s linear infinite;
+}
+
+.orbit-ring {
+    display: none;
+}
+
+.plane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: clamp(16px, 1.45vw, 20px);
+    height: clamp(16px, 1.45vw, 20px);
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+    filter: drop-shadow(0 0 9px rgba(104, 191, 255, 0.4));
+    opacity: 0.94;
+    will-change: transform;
+}
+
+.plane::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(165deg, #f6fbff 0%, #d7ebff 52%, #b4d4f4 100%);
+    clip-path: polygon(0% 58%, 42% 45%, 76% 18%, 90% 20%, 69% 46%, 94% 46%, 100% 54%, 70% 55%, 83% 78%, 68% 82%, 45% 61%, 0% 70%);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.55);
+}
+
+.plane::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 52%;
+    width: clamp(26px, 2.8vw, 36px);
+    height: clamp(4px, 0.6vw, 6px);
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, rgba(156, 216, 255, 0), rgba(156, 216, 255, 0.34) 52%, rgba(246, 252, 255, 0.5) 100%);
+    border-radius: 999px;
+    filter: blur(0.8px);
+    opacity: 0.45;
+    mix-blend-mode: screen;
+    animation: vaporPulse 2.8s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .travel-animation {
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    .globe-container {
+        width: min(52vw, 220px);
+        opacity: 0.74;
+    }
+
+    .plane {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .travel-animation {
+        opacity: 0.54;
+    }
+
+    .orbit-ring {
+        display: none;
+    }
+
+    .travel-animation::before {
+        display: none;
+    }
+}
+
+@keyframes earthTextureDrift {
+    from {
+        background-position: 0 50%;
+    }
+    to {
+        background-position: -180% 50%;
+    }
+}
+
+@keyframes cloudDrift {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-10%);
+    }
+}
+
+@keyframes shootingStars {
+    0%, 42%, 100% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        opacity: 0.32;
+        transform: translate3d(22px, -14px, 0);
+    }
+    58% {
+        opacity: 0;
+        transform: translate3d(44px, -28px, 0);
+    }
+}
+
+@keyframes vaporPulse {
+    0%, 100% {
+        opacity: 0.26;
+        transform: translateY(-50%) scaleX(0.9);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-50%) scaleX(1.05);
     }
 }

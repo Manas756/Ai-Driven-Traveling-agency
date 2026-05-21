@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+  <header>
+    <div id="navbar">
+      <h2>Nomway</h2>
+
+      <div id="part">
+        <div class="indicator"></div>
+
+        <h4 class="nav-item"><i class="fa-solid fa-house"></i> Dashboard</h4>
+        <h4 class="nav-item"><i class="fa-solid fa-code-pull-request"></i> My Requests</h4>
+        <h4 class="nav-item"><i class="fa-solid fa-message"></i> Message</h4>
+        <h4 class="nav-item"><i class="fa-solid fa-gear"></i> Settings</h4>
+        <h4 class="nav-item logout">
+          <a href="login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            LOGOUT
+          </a>
+        </h4>
+      </div>
+    </div>
+  </header>
+  <main class="dashboard-main">
+    <section class="planner-section container">
+      <h1>Select Your Destination</h1>
+
+      <input type="text" id="searchBox" placeholder="Search location in India..." />
+      <div id="suggestions"></div>
+
+      <div id="map"></div>
+
+      <div class="info">
+        <p><strong>Selected Place:</strong> <span id="placeName">None</span></p>
+
+        <div class="form-row">
+          <input type="number" id="people" placeholder="Number of People" />
+          <input type="number" id="budget" placeholder="Budget (₹)" />
+        </div>
+
+        <button id="saveBtn">Plan Trip</button>
+      </div>
+    </section>
+
+    <section class="trips-section container">
+      <h1>Explore Trips 🌍</h1>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-image" style="background-image: url('https://rishikesh.net/wp-content/uploads/2019/11/bigstock-Rishikesh-India-Circa-April-329638714.jpg');"></div>
+          <h2>Rishikesh</h2>
+          <p class="type">Adventure • 3 Days</p>
+
+          <ul>
+            <li>Laxman Jhula</li>
+            <li>River Rafting</li>
+            <li>Beatles Ashram</li>
+          </ul>
+
+          <div class="budget">₹4,500 – ₹5,500</div>
+          <button>Select</button>
+        </div>
+
+        <div class="card">
+          <div class="card-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg');"></div>
+          <h2>Agra</h2>
+          <p class="type">Historical • 2 Days</p>
+
+          <ul>
+            <li>Taj Mahal</li>
+            <li>Agra Fort</li>
+            <li>Mehtab Bagh</li>
+          </ul>
+
+          <div class="budget">₹3,000 – ₹4,000</div>
+          <button>Select</button>
+        </div>
+
+        <div class="card">
+          <div class="card-image" style="background-image: url('https://thetravelshots.com/wp-content/uploads/2021/02/VAranasi.jpg');"></div>
+          <h2>Varanasi</h2>
+          <p class="type">Spiritual • 3 Days</p>
+
+          <ul>
+            <li>Ganga Aarti</li>
+            <li>Kashi Temple</li>
+            <li>Dashashwamedh Ghat</li>
+          </ul>
+
+          <div class="budget">₹5,000 – ₹9,000</div>
+          <button>Select</button>
+        </div>
+      </div>
+    </section>
+  </main>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script src="dashboard.js"></script>
+
+</body>
+</html>
